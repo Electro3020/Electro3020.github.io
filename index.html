@@ -111,5 +111,21 @@
             And you're done! If you have any questions, contact me... somewhere (I'll put my contact info here someday)
         </div>
     </section>
+    <section>
+        <div>
+            <div class="section-heading">More customization</div>
+            In the example configuration I showed you, you might have noticed the 'hashesToDrop' and 'maxConcurrentRequests' fields.<br>
+            If the number of blocked characters in a message exceeds <strong>hashesToDrop</strong> the message will be blocked entirely.<br>
+            <strong>maxConcurrentRequests</strong> defines the limit of how many requests to the web server are allowed at once. (I can't say for certain what this does, so best leave it as it is)<br>
+            <br>
+            Also, in the Python code you may have also noticed <strong>join</strong> and <strong>leave</strong> functions. These are also called whenever a player joins or leaves the Minecraft server.<br>
+            <br>
+            If you want to go further, you can also use the text filter to log messages and joins/leaves too. The player's username and UUID are also provided in the web request, as mentioned above.<br>
+            <br>
+            The example script auto-generates a regex pattern for text filtering, but you can change this if you want.<br>
+            <br>
+            If you're hosting the filter server on a different system than your Minecraft server, I recommend you set the apiKey in the server.properties and verify it on the web server.
+        </div>
+    </section>
 </body>
 </html>
