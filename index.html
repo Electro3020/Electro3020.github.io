@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        body {
+            background-image: linear-gradient(#A915D7 0%, #050010 15%, #050010 85%, #d7a915 100%);
+            font-family: Arial, Helvetica, sans-serif;
+            padding: auto;
+            color: white
+        }
+        .dark-mode {
+            background-image: linear-gradient(#A915D7 0%, #050010 10%, #050010 90%, #d7a915 100%);
+            color: white
+        }
+        .header {
+            text-align: center;
+            color: white;
+            padding: 10px;
+        }
+        .navbar {
+            color: white;
+            padding: 5px;
+        }
+        section {
+            padding: 20px;
+            font-size: x-large;
+            margin: 50px;
+            margin-left: 80px;
+            margin-right: 80px;
+            border: 5px double white;
+        }
+        .section-heading {
+            text-decoration: underline;
+            color: #d7a915;
+            font-size: 200%;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        .button {
+            border: medium none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline;
+            font-size: 16px;
+            margin: 8px 5px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        .button1 {
+            background-color: #1543D7;
+            border-color: #d7a915;
+            color:white
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header">
+            <h1>
+                How to use Minecraft's secret text filtering system
+            </h1>
+        </div>
+    </header>
+    <nav class="header navbar"> <!-- navbar?! this isn't a navbar! -->
+        <h2>
+            By Scienceboy
+        </h2>
+    </nav>
+
+    <section>
+        <div>
+            <div class="section-heading">Before you start</div>
+            Thanks to <a href="https://walshy.dev/blog/21_03_16-mc-new-text-filtering">this blog post by Walshy</a> for providing most of the info needed.<br>
+            You will need some coding knowledge to use the example.<br>
+            Please note that this feature may not be supported in the future.
+        </div>
+    </section>
+    <section>
+        <div>
+            <div class="section-heading">How it works (basically)</div>
+            When a chat message is sent, the Minecraft server will send a request to a web server containing that message, the sender's username/UUID and an API key.<br>
+            The web server will then respond with 3 parameters: <strong>response</strong>, <strong>hashed</strong> and <strong>hashes</strong>.<br>
+            <br>
+            If <strong>response</strong> is true, the server will allow the message.<br>
+            If <strong>response</strong> is false and <strong>hashed</strong> is not provided, the message will be blocked entirely.<br>
+            If <strong>response</strong> is false and <strong>hashed</strong> is provided, the server will only block certain parts of the message as specified in <strong>hashes.</strong><br>
+            <br>
+            <strong>Hashes</strong> is a list of integers. Each number represents the index of a character in the message. For example,
+            let's say the message was "quick brown fox", 'q' would be index 0, 'u' would be 1, 'i' is 2 and so on.<br>
+            If we provided 2, 3 and 6 in <strong>hashes</strong>, it would block characters 2, 3 and 6 so the message would be sent as "qu##k #rown fox"
+            (remember, the index starts at 0).
+        </div>
+    </section>
+    <section>
+        <div>
+            <div class="section-heading">How to do it</div>
+            Here's how you can filter chat messages in your vanilla Minecraft server. I will be using Python for this.<br>
+            <strong>1.</strong> Download <a href="/file/filter.py">my example Python script</a> and run it on the same system as your Minecraft server. (You will need Flask for it to work!)<br>
+            <strong>2.</strong> Set the text-filtering-config in your Minecraft's server.properties to <a style="font-family: monospace;">&#123;"apiServer":"http://localhost:5000", "apiKey":"123", "hashesToDrop":-1, "maxConcurrentRequests":-1&#125;</a> - you can change apiKey, ruleId and serverId to whatever you want. (for now)<br>
+            <strong>3.</strong> Add all your naughty words to the badWords list in filter.py (optional, but recommended)<br>
+            <br>
+            And you're done! If you have any questions, contact me... somewhere (I'll put my contact info here someday)
+        </div>
+    </section>
+</body>
+</html>
